@@ -1,66 +1,89 @@
-// script.js
+let boxes = document.querySelectorAll(".box"); 
+let resetBtn = document.querySelector("#reset-btn");
+let newBtn = document.querySelector("#new-btn");
+let msgContainer = document.querySelector(".msg-container");
+let msg = document.querySelector("#msg")
+let turnO = true;
 
-const board = document.querySelector('.board');
-const cells = document.querySelectorAll('.cell');
-const message = document.getElementById('message');
-const resetButton = document.getElementById('resetButton');
-
-let currentPlayer = 'X';
-let boardState = ['', '', '', '', '', '', '', '', ''];
-let gameActive = true;
-
-const winConditions = [
-    [0, 1, 2],
-    [3, 4, 5],
-    [6, 7, 8],
-    [0, 3, 6],
-    [1, 4, 7],
-    [2, 5, 8],
-    [0, 4, 8],
-    [2, 4, 6],
+const winPatterns = [
+     [0, 1, 2],
+     [3, 4, 5],
+     [6, 7, 8],
+     [0, 3, 6],
+     [1, 4, 7],
+     [2, 5, 8],
+     [0, 4, 8],
+     [2, 4, 6], 
 ];
 
-function handleClick(event) {
-    const cell = event.target;
-    const index = cell.getAttribute('data-index');
-
-    if (boardState[index] || !gameActive) return;
-
-    boardState[index] = currentPlayer;
-    cell.classList.add(currentPlayer);
-    cell.textContent = currentPlayer;
-
-    if (checkWin()) {
-        message.textContent = `${currentPlayer} wins!`;
-        gameActive = false;
-    } else if (boardState.every(cell => cell)) {
-        message.textContent = "It's a draw!";
-        gameActive = false;
-    } else {
-        currentPlayer = currentPlayer === 'X' ? 'O' : 'X';
-        message.textContent = `Player ${currentPlayer}'s turn`;
-    }
+const resetGame = () => {
+     turnO = true;
+     enaableBoxes();
+     msgContainer.classList.add("hide");
 }
 
-function checkWin() {
-    return winConditions.some(condition => {
-        const [a, b, c] = condition;
-        return boardState[a] && boardState[a] === boardState[b] && boardState[a] === boardState[c];
+    boxes.forEach((box) => {
+    box.addEventListener("click", () => {
+     if (turnO) {
+
+          box.innerText = "0";
+          box.classList.add("color");
+          turnO = false;
+          
+        } else {
+
+          box.innerText = "x";
+          box.classList.remove("color");
+          turnO = true;
+        }
+
+        box.disabled = true;
+        checkWinner();
     });
+});
+
+const disableBoxes = () => {
+     for (const box of boxes) {
+          box.disabled = true;
+     }
+};
+
+const enaableBoxes = () => {
+     for (const box of boxes) {
+          box.disabled = false;
+          box.innerText = "";
+     }
+};
+
+const showWinner = (winner) => {
+msg.innerHTML = `congratulations, winner is ${winner} `;
+msgContainer.classList.remove("hide");
+disableBoxes();
+};
+
+const chackingGame = () => {
+if (msg.innerHTML != showWinner) {
+     console.log("game draw"); 
+}
+     
 }
 
-function resetGame() {
-    boardState = ['', '', '', '', '', '', '', '', ''];
-    gameActive = true;
-    currentPlayer = 'X';
-    message.textContent = "Player X's turn";
-    cells.forEach(cell => {
-        cell.textContent = '';
-        cell.classList.remove('X', 'O');
-    });
-}
 
-board.addEventListener('click', handleClick);
-resetButton.addEventListener('click', resetGame);
+const checkWinner = () => {
+     for (let pattern of winPatterns) {
 
-resetGame(); // Initialize the game
+          let pos1Val = boxes[pattern[0]].innerText;
+          let pos2Val = boxes[pattern[1]].innerText;
+          let pos3Val = boxes[pattern[2]].innerText;
+
+          if (pos1Val != "" && pos2Val !=  "" && pos3Val !=  "" ) {
+          if (pos1Val === pos2Val && pos2Val === pos3Val ) {
+               showWinner(pos1Val);
+          }
+     }
+     }
+};
+
+newBtn.addEventListener("click", resetGame);
+resetBtn.addEventListener("click", resetGame);
+chackingGame();
