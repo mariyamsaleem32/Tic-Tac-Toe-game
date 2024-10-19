@@ -1,79 +1,64 @@
-*{
-    margin: 0;
-    padding: 0;
-    font-family: 'Times New Roman', Times, serif;
-    text-transform: capitalize;
-    
+* {
+margin: 0;
+padding: 0;
+font-family: 'Times New Roman', Times, serif;
+text-transform: capitalize;}
+
+body {
+background-color: #548688;
+text-align: center;
 }
 
-body{
-    background-color: #548688;
-    text-align: center;
+h1 {
+font-size: 2.5rem;
+font-family: Georgia, 'Times New Roman', Times, serif;
+font-style: oblique;
 }
 
-h1{
-    font-size: 2.5rem;
-    font-family: Georgia, 'Times New Roman', Times, serif;
-    font-style:oblique;
-   
+.container {
+height: 70vh;
+display: flex;
+justify-content: center;
+align-items: center;
 }
 
-.container{
-    height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.game {
+width: 60vmin;
+height: 60vmin;
+display: flex;
+flex-wrap: wrap;
+justify-content: center;
+align-items: center;
+gap: 1.5vmin;}
+
+.box {
+height: 19vmin;
+width: 19vmin;
+border-radius: 1rem;
+border: none;
+box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+font-size: 8vmin;
+color: #b0284e;
+cursor: pointer;
+background-color: #ffffc7;
 }
 
-.game{
-    width: 60vmin;
-    height: 60vmin;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-items: center;
-    gap: 1.5vmin;
- 
-}
-
-.box{
-    height: 19vmin; 
-    width: 19vmin;
-    border-radius: 1rem; 
-    border: none;
-    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
-    font-size: 8vmin;
-    color: #b0284e ;
-    cursor: pointer;
-    background-color: #ffffc7;
-}
-
-#reset-btn{
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191943;
-    color: #ffffc7;
-    border-radius: 1rem;
-    border: none;
-    cursor: pointer;
-}
-
-#new-btn{
-    padding: 1rem;
-    font-size: 1.25rem;
-    background-color: #191943;
-    color: #ffffc7;
-    border-radius: 1rem;
-    border: none;
-    cursor: pointer;
+button {
+padding: 1rem;
+font-size: 1.25rem;
+background-color: #191943;
+color: #ffffc7;
+border-radius: 1rem;
+border: none;
+cursor: pointer;
 }
 
 #msg {
-    font-size: 8vmin;
-    color: #ffffc7;
+font-size: 8vmin;
+color: #ffffc7;
 }
 
-.msg-container{
+.msg-container {
 height: 100vmin;
 display: flex;
 align-items: center;
@@ -82,10 +67,10 @@ flex-direction: column;
 gap: 4rem;
 }
 
-.hide{
-    display: none;
+.hide {
+display: none;
 }
 
-.color{
-    color: #02085e;
+.color {
+color: #02085e;
 }
